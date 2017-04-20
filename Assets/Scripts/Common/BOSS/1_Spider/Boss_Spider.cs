@@ -97,6 +97,8 @@ public class Boss_Spider : Boss {
 
     void BornEggInvoke()
     {
+        if (currentState == State.change)
+            return;
         currentState = State.move;
 
         GameObject egg = Instantiate(eggPrefab, new Vector2(Random.Range(-7.7f, 7.7f), Random.Range(3.0f, 5.0f)), Quaternion.identity) as GameObject;
@@ -118,6 +120,8 @@ public class Boss_Spider : Boss {
 
     void SpinInvoke()
     {
+        if (currentState == State.change)
+            return;
         currentState = State.move;
 
         GameObject spin = Instantiate(spinPrefab, spinPos.position, Quaternion.identity) as GameObject;

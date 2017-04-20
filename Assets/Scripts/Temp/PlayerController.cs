@@ -157,9 +157,8 @@ public class PlayerController : MonoBehaviour {
 		_nowState = state.jump;
 
         Invoke("SetGetControlToTrue", 0.2f);
-        Invoke("SetInvicibleToFalse", invicibleTime * _playerData._invicibleTimeRate);
 
-        StartCoroutine(Blink(invicibleTime));
+        StartCoroutine(Blink(invicibleTime * _playerData._invicibleTimeRate));
 
 		HandleDamage (damage);
 	}
@@ -386,11 +385,6 @@ public class PlayerController : MonoBehaviour {
 		_controllable = true;
     }
 
-    void SetInvicibleToFalse()
-    {
-        _invicible = false;
-    }
-
     IEnumerator ReduceHp(float nowHp)
     {
         for(int i = 0;i < 10;i++)
@@ -413,5 +407,7 @@ public class PlayerController : MonoBehaviour {
             renderer.enabled = true;
             yield return new WaitForSeconds(0.05f);
         }
+
+        _invicible = false;
     }
 }

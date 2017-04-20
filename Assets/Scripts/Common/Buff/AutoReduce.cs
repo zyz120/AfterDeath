@@ -38,7 +38,10 @@ public class AutoReduce : MonoBehaviour {
         switch(_buff._buffType)
         {
             case Buff.BuffType.spiderWeb:
-                PlayerData.Instance._moveSpeed += PlayerData.Instance._moveSpeed_origin * 0.5f;
+                PlayerData.Instance._moveSpeed = PlayerData.Instance._moveSpeed_origin;
+                break;
+            case Buff.BuffType.spiderWebStop:
+                PlayerData.Instance._moveSpeed = PlayerData.Instance._moveSpeed_origin;
                 break;
             case Buff.BuffType.slow:
                 PlayerData.Instance._moveSpeed *= 1f / 0.6f;

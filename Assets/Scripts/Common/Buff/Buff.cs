@@ -8,7 +8,7 @@ public class Buff : MonoBehaviour {
     {
         none, slow, poison,
         doubleJumpCD,
-        spiderWeb
+        spiderWeb, spiderWebStop
     }
 
     public BuffType _buffType { get; private set; }
@@ -36,6 +36,9 @@ public class Buff : MonoBehaviour {
         {
             case BuffType.spiderWeb:
                 PlayerData.Instance._moveSpeed -= PlayerData.Instance._moveSpeed_origin * 0.5f;
+                break;
+            case BuffType.spiderWebStop:
+                PlayerData.Instance._moveSpeed = 0;
                 break;
             case BuffType.slow:
                 PlayerData.Instance._moveSpeed *= 0.6f;

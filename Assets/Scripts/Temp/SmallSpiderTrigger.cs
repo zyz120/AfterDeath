@@ -8,7 +8,7 @@ public class SmallSpiderTrigger : MonoBehaviour
     {
         if (collision.tag == Tags.player)
         {
-            collision.transform.GetComponent<PlayerController>().Hurt(4, transform.position, CommonData.Instance._normalRepelForce, 0.8f);
+            collision.transform.GetComponent<PlayerController>().Hurt(12, transform.position, CommonData.Instance._normalRepelForce, 0.8f);
         }
         if(collision.tag == Tags.playerBullet)
         {

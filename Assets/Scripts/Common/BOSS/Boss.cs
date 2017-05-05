@@ -29,6 +29,7 @@ public class Boss : MonoBehaviour {
         {
             // TODO
             Destroy(gameObject);
+            GameObject.Find("Player").GetComponent<PlayerController>().Dead(2);
             return;
         }
         StartCoroutine(Blink());

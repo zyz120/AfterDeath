@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Hero controller.
@@ -305,9 +306,27 @@ public class PlayerController : MonoBehaviour {
         if(_health <= 0)
         {
             StartCoroutine(ReduceHp(0));
-            Destroy(gameObject);
+
+            Dead(1);
         }
 	}
+
+    public void Dead(int type)
+    {
+        // TODO 这段代码只是临时使用，不改会爆炸
+        GameObject bg = null;
+        if (type == 1)
+            bg = GameObject.Find("BlackBg(TEMP)");
+        else
+            bg = GameObject.Find("BlackBg2(TEMP)");
+
+        if (bg != null)            
+            bg.GetComponent<GameOverTemp>().isFading = true;
+
+        GameObject canvas = GameObject.Find("Canvas");
+        if(canvas!=null)
+            canvas.SetActive(false);
+    }
 
     void ReduceHeat()
     {
@@ -365,7 +384,14 @@ public class PlayerController : MonoBehaviour {
 	void ListenMouse()
 	{
 		HandleMousePosition (Camera.main.ScreenToWorldPoint(Input.mousePosition));
-		if (Input.GetMouseButton (0))
+        
+        // TODO 这个if招新完删掉
+        if (Input.GetMouseButtonDown(0) && _health <= 0)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        }
+
+        if (Input.GetMouseButton (0))
         {
 			TryShot ();
 		}
